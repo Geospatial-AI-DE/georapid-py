@@ -11,14 +11,35 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from datetime import datetime
+import requests
+
 from . client import GeoRapidClient
+from . formats import OutFormat
 
 
 
-class GeoProtestsClient(object):
+def aggregate(client: GeoRapidClient, date: datetime = None, format = OutFormat.GEOJSON):
     """
-    Represents a client accessing the geoprotests API being hosted at Rapid API.
+    Aggregates the broadcasted news related to protests/demonstrations using a spatial grid and returns the features as hexagonal bins.
+    The date is optional. When not specified, we return the features of the last 24 hours.
+    The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
+    The format can be GeoJSON or Esri JSON.
     """
+    return _request_aggregate(client, date, format).json()
 
-    def __init__(self, client) -> None:
-        self._client = client
+def _request_aggregate(client: GeoRapidClient, date: datetime = None, format = OutFormat.GEOJSON):
+    """
+    Aggregates the broadcasted news related to protests/demonstrations using a spatial grid and returns the features as hexagonal bins.
+    The date is optional. When not specified, we return the features of the last 24 hours.
+    The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
+    The format can be GeoJSON or Esri JSON.
+    """
+    endpoint = '{0}/aggregate'.format(client.url)
+    params = {
+        'format': str(format)
+    }
+    if date:
+        params['date'] = datetime.strftime(date, '%Y-%m-%d')
+
+    return requests.request('GET', endpoint, headers=client.auth_headers, params=params)

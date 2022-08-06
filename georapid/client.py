@@ -11,12 +11,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from enum import Enum, unique
-from datetime import datetime
-import requests
-
-
-
 class GeoRapidClient(object):
     """
     Represents a client accessing the geospatial knowledge API services being hosted at Rapid API.
@@ -34,3 +28,13 @@ class GeoRapidClient(object):
             raise ValueError("'x-rapidapi-key' must be specified in the authorization header!")
 
         self._auth_headers = auth_headers
+
+    @property
+    def auth_headers(self):
+        """Returns the authorization header dictionary."""
+        return self._auth_headers
+
+    @property
+    def url(self):
+        """Returns the endpoint url."""
+        return self._url
