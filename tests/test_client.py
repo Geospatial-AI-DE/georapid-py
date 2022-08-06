@@ -13,7 +13,7 @@
 
 from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
-from georapid.protests import aggregate
+from georapid.protests import aggregate, articles, hotspots
 import unittest
 
 
@@ -30,5 +30,15 @@ class TestConnect(unittest.TestCase):
     def test_protests_aggregate(self):
         client: GeoRapidClient = EnvironmentClientFactory.create_client()
         geojson = aggregate(client)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+
+    def test_protests_articles(self):
+        client: GeoRapidClient = EnvironmentClientFactory.create_client()
+        json = articles(client)
+        self.assertIsNotNone(json, "JSON response must be initialized!")
+
+    def test_protests_hotspots(self):
+        client: GeoRapidClient = EnvironmentClientFactory.create_client()
+        geojson = hotspots(client)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
         

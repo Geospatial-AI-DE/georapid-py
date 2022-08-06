@@ -26,15 +26,6 @@ def aggregate(client: GeoRapidClient, date: datetime = None, format = OutFormat.
     The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
     The format can be GeoJSON or Esri JSON.
     """
-    return _request_aggregate(client, date, format).json()
-
-def _request_aggregate(client: GeoRapidClient, date: datetime = None, format = OutFormat.GEOJSON):
-    """
-    Aggregates the broadcasted news related to protests/demonstrations using a spatial grid and returns the features as hexagonal bins.
-    The date is optional. When not specified, we return the features of the last 24 hours.
-    The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
-    The format can be GeoJSON or Esri JSON.
-    """
     endpoint = '{0}/aggregate'.format(client.url)
     params = {
         'format': str(format)
@@ -42,4 +33,33 @@ def _request_aggregate(client: GeoRapidClient, date: datetime = None, format = O
     if date:
         params['date'] = datetime.strftime(date, '%Y-%m-%d')
 
-    return requests.request('GET', endpoint, headers=client.auth_headers, params=params)
+    return requests.request('GET', endpoint, headers=client.auth_headers, params=params).json()
+
+def articles(client: GeoRapidClient, date: datetime = None):
+    """
+    Returns a list of broadcasted articles related to protests/demonstrations.
+    The date is optional. When not specified, we return the articles of the last 24 hours.
+    The underlying web service saves the last 90 days and yesterday should be the latest available date.
+    """
+    endpoint = '{0}/articles'.format(client.url)
+    params = {}
+    if date:
+        params['date'] = datetime.strftime(date, '%Y-%m-%d')
+
+    return requests.request('GET', endpoint, headers=client.auth_headers, params=params).json()
+
+def hotspots(client: GeoRapidClient, date: datetime = None, format = OutFormat.GEOJSON):
+    """
+    Returns the hotspot locations related to protests/demonstrations.
+    The date is optional. When not specified, we return the features of the last 24 hours.
+    The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
+    The format can be GeoJSON or Esri JSON.
+    """
+    endpoint = '{0}/hotspots'.format(client.url)
+    params = {
+        'format': str(format)
+    }
+    if date:
+        params['date'] = datetime.strftime(date, '%Y-%m-%d')
+
+    return requests.request('GET', endpoint, headers=client.auth_headers, params=params).json()
