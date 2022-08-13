@@ -22,7 +22,7 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
 
 setuptools.setup(
     name='georapid',
-    version='0.1a1',
+    version='0.1a2',
     author='Jan Tschada',
     author_email='gisfromscratch@live.de',
     description='Query broadcasted news worldwide and visualize them using spatial aggregations.',
