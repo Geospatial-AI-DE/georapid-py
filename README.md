@@ -1,5 +1,5 @@
 # georapid-py
-Query broadcasted news worldwide and visualize them using spatial aggregations.
+Query broadcasted news worldwide and visualize them using spatial aggregations. This python modules represents an idiomatic client accessing the being hosted on [Rapid API Hub](https://rapidapi.com/hub). Please, check out the [RapidAPI Account Creation and Management Guide](https://docs.rapidapi.com/docs/account-creation-and-settings).
 
 ## Ready to use
 The [geospatial knowledge APIs](https://geospatial-ai.de/?rara_portfolio_categories=api-services) offer ready-to-use geospatial features representing broadcasted news related to various themes. You can use these geospatial features to build various mapping and geospatial applications. The underlying serverless cloud-backend analyses raw geospatial locations of news articles provided by the Global Database of Events, Language and Tone (GDELT) Project (https://www.gdeltproject.org/).
