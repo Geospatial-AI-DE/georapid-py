@@ -46,7 +46,7 @@ class EnvironmentClientFactory(object):
         return GeoRapidClient(url, auth_headers)
 
     @staticmethod
-    def create_client_with_host(url, host):
+    def create_client_with_host(host):
         """
         Creates a new client using 'x_rapidapi_key' enironment variable.
         Raises a ValueError when this variable is not defined!
@@ -60,4 +60,5 @@ class EnvironmentClientFactory(object):
             'x-rapidapi-key': key
         }
 
+        url = "https://%s" % host
         return GeoRapidClient(url, auth_headers)

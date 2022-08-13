@@ -37,6 +37,12 @@ class TestConnect(unittest.TestCase):
         json = articles(client)
         self.assertIsNotNone(json, "JSON response must be initialized!")
 
+    def test_host_protests_articles(self):
+        host = "geoprotests.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        json = articles(client)
+        self.assertIsNotNone(json, "JSON response must be initialized!")
+
     def test_protests_hotspots(self):
         client: GeoRapidClient = EnvironmentClientFactory.create_client()
         geojson = hotspots(client)
