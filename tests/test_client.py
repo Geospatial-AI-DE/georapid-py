@@ -23,7 +23,8 @@ import unittest
 class TestConnect(unittest.TestCase):
 
     def setUp(self) -> None:
-        pass
+        self._latitudes = [51.83864, 50.73438]
+        self._longitudes = [12.24555, 7.09549]
 
     def test_create(self):
         client: GeoRapidClient = EnvironmentClientFactory.create_client()
@@ -71,13 +72,17 @@ class TestConnect(unittest.TestCase):
     def test_joins_contains(self):
         host = "geojoins.p.rapidapi.com"
         client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        lat = self._latitudes[0]
+        lon = self._longitudes[0]
+        delta = 0.1
+        xmin, xmax, ymin, ymax = lon-delta, lon+delta, lat-delta, lat+delta
         left = { 
             "type": "FeatureCollection",
             "features": [{
                 "type": "Feature",
                 "geometry": {
                     "type": "Polygon",
-                    "coordinates": [[[101.9, 0.6], [101.9, 0.4], [102.1, 0.4], [102.1, 0.6], [101.9, 0.6]]]
+                    "coordinates": [[[xmin, ymax], [xmin, ymin], [xmax, ymin], [xmax, ymax], [xmin, ymax]]]
                 },
                 "properties": {
                     "id": "left_polygon"
@@ -90,7 +95,7 @@ class TestConnect(unittest.TestCase):
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [102.0, 0.5]
+                    "coordinates": [lon, lat]
                 },
                 "properties": {
                     "id": "right_point"
