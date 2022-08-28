@@ -15,6 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
+from georapid.joins import contains
 import unittest
 
 
@@ -65,4 +66,36 @@ class TestConnect(unittest.TestCase):
         host = "geofires.p.rapidapi.com"
         client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
         geojson = query_fires(client)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+
+    def test_joins_contains(self):
+        host = "geojoins.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        left = { 
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[[101.9, 0.6], [101.9, 0.4], [102.1, 0.4], [102.1, 0.6], [101.9, 0.6]]]
+                },
+                "properties": {
+                    "id": "left_polygon"
+                }
+            }]
+        }
+        right = { 
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [102.0, 0.5]
+                },
+                "properties": {
+                    "id": "right_point"
+                }
+            }]
+        }
+        geojson = contains(client, left, right)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")

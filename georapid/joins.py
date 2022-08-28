@@ -10,3 +10,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+import requests
+
+from . client import GeoRapidClient
+
+
+
+def contains(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    endpoint = '{0}/contains'.format(client.url)
+    json = {
+        'left': left_featurecollection,
+        'right:': right_featurecollection
+    }
+    headers = client.auth_headers.copy()
+    response = requests.request('POST', endpoint, headers=headers, json=json)
+    return response.json()
