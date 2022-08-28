@@ -21,8 +21,7 @@ def contains(client: GeoRapidClient, left_featurecollection: dict, right_feature
     endpoint = '{0}/contains'.format(client.url)
     json = {
         'left': left_featurecollection,
-        'right:': right_featurecollection
+        'right': right_featurecollection
     }
-    headers = client.auth_headers.copy()
-    response = requests.request('POST', endpoint, headers=headers, json=json)
-    return response.json()
+    return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
+    
