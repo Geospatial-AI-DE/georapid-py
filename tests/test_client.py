@@ -16,6 +16,7 @@ from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
+from georapid.geojson import GeoJSON
 import unittest
 
 
@@ -359,6 +360,33 @@ class TestConnect(unittest.TestCase):
             }]
         }
         geojson = within(client, left, right)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(1, len(features), "One result feature was expected!")
+
+    def test_geojson_from_url(self):
+        host = "geojoins.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        url = "https://stadtplan.bonn.de/geojson?Thema=14574"
+        left = GeoJSON.from_url(url)
+        lat = self._latitudes[1]
+        lon = self._longitudes[1]
+        right = { 
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [lon, lat]
+                },
+                "properties": {
+                    "id": "right_point"
+                }
+            }]
+        }
+        geojson = contains(client, left, right)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
         self.assertTrue('features' in geojson, "GeoJSON response must have features!")
         features = geojson['features']
