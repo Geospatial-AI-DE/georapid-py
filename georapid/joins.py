@@ -32,4 +32,12 @@ def covers(client: GeoRapidClient, left_featurecollection: dict, right_featureco
         'right': right_featurecollection
     }
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
+
+def crosses(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    endpoint = '{0}/crosses'.format(client.url)
+    json = {
+        'left': left_featurecollection,
+        'right': right_featurecollection
+    }
+    return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
     
