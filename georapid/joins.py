@@ -64,4 +64,12 @@ def touches(client: GeoRapidClient, left_featurecollection: dict, right_featurec
         'right': right_featurecollection
     }
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
+
+def within(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    endpoint = '{0}/within'.format(client.url)
+    json = {
+        'left': left_featurecollection,
+        'right': right_featurecollection
+    }
+    return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
     
