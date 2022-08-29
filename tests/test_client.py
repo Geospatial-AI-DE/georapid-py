@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.joins import contains, covers, crosses
+from georapid.joins import contains, covers, crosses, intersects
 import unittest
 
 
@@ -187,6 +187,50 @@ class TestConnect(unittest.TestCase):
             }]
         }
         geojson = crosses(client, left, right)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(1, len(features), "One result feature was expected!")
+
+    def test_joins_intersects(self):
+        host = "geojoins.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        lat1_start = self._latitudes[0]
+        lon1_start = self._longitudes[0]
+        lat1_end = -lat1_start
+        lon1_end = -lon1_start
+        lat2_start = self._latitudes[1]
+        lon2_start = self._longitudes[1]
+        lat2_end = -lat2_start
+        lon2_end = -lon2_start
+        left = { 
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [[lon1_start, lat1_start], [lon1_end, lat1_end]]
+                },
+                "properties": {
+                    "id": "left_linestring"
+                }
+            }]
+        }
+        right = { 
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [[lon2_start, lat2_start], [lon2_end, lat2_end]]
+                },
+                "properties": {
+                    "id": "right_linestring"
+                }
+            }]
+        }
+        geojson = intersects(client, left, right)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
         self.assertTrue('features' in geojson, "GeoJSON response must have features!")
         features = geojson['features']
