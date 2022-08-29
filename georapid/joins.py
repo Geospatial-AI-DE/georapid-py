@@ -56,4 +56,12 @@ def overlaps(client: GeoRapidClient, left_featurecollection: dict, right_feature
         'right': right_featurecollection
     }
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
+
+def touches(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    endpoint = '{0}/touches'.format(client.url)
+    json = {
+        'left': left_featurecollection,
+        'right': right_featurecollection
+    }
+    return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
     
