@@ -104,6 +104,10 @@ class TestConnect(unittest.TestCase):
         }
         geojson = contains(client, left, right)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(1, len(features), "One result feature was expected!")
 
     def test_joins_covers(self):
         host = "geojoins.p.rapidapi.com"
@@ -140,6 +144,10 @@ class TestConnect(unittest.TestCase):
         }
         geojson = covers(client, left, right)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(1, len(features), "One result feature was expected!")
 
     def test_joins_crosses(self):
         host = "geojoins.p.rapidapi.com"
@@ -180,3 +188,7 @@ class TestConnect(unittest.TestCase):
         }
         geojson = crosses(client, left, right)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(1, len(features), "One result feature was expected!")
