@@ -48,4 +48,12 @@ def intersects(client: GeoRapidClient, left_featurecollection: dict, right_featu
         'right': right_featurecollection
     }
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
+
+def overlaps(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    endpoint = '{0}/overlaps'.format(client.url)
+    json = {
+        'left': left_featurecollection,
+        'right': right_featurecollection
+    }
+    return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
     
