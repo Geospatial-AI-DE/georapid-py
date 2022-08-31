@@ -87,6 +87,12 @@ def overlaps(client: GeoRapidClient, left_featurecollection: dict, right_feature
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
 
 def touches(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    input features touching the target features. Therefore the input and target geometry 
+    must have at least one point in common and all common points lie on at least one boundary.
+    So that the input and target interior do not share any point in common.
+    """
     endpoint = '{0}/touches'.format(client.url)
     json = {
         'left': left_featurecollection,
