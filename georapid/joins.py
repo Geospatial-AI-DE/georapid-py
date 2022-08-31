@@ -20,10 +20,10 @@ from . client import GeoRapidClient
 def contains(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    input features containing the target features. Therefore the target geometry 
+    input features containing the target features. Therefore, the target geometry 
     must be completely inside the input geometry. So that no points of the 
-    target geometry lie in the exterior of the input geometry, and at least 
-    one point of the interior of the target geometry lies in the interior of the input geometry.  
+    target geometry lie in the input's exterior geometry, and at least 
+    one point of the interior of the target geometry lies in the input's interior geometry.  
     """
     endpoint = '{0}/contains'.format(client.url)
     json = {
@@ -35,7 +35,7 @@ def contains(client: GeoRapidClient, left_featurecollection: dict, right_feature
 def covers(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    input features covering the target features. Therefore no point of the target geometry must be 
+    input features covering the target features. Therefore, no point of the target geometry must be 
     outside of the input geometry.
     """
     endpoint = '{0}/covers'.format(client.url)
@@ -48,7 +48,7 @@ def covers(client: GeoRapidClient, left_featurecollection: dict, right_featureco
 def crosses(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    input features crossing the target features. Therefore the input and target geometry have some, 
+    input features crossing the target features. Therefore, the input and target geometry have some, 
     but not all interior points in common. So that the intersection of the input and target geometry 
     must be non-empty and must not equal the input nor the target geometry.
     """
@@ -62,7 +62,7 @@ def crosses(client: GeoRapidClient, left_featurecollection: dict, right_featurec
 def intersects(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    input features intersecting the target features. Therefore the input and target geometry 
+    input features intersecting the target features. Therefore, the input and target geometry 
     must have any point in common.
     """
     endpoint = '{0}/intersects'.format(client.url)
@@ -75,7 +75,7 @@ def intersects(client: GeoRapidClient, left_featurecollection: dict, right_featu
 def overlaps(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    input features overlapping the target features. Therefore the input and target geometry 
+    input features overlapping the target features. Therefore, the input and target geometry 
     must have the same dimension and at least one point not shared by the other. So that 
     the intersection of their interiors results in a geometry having the same dimension.
     """
@@ -89,7 +89,7 @@ def overlaps(client: GeoRapidClient, left_featurecollection: dict, right_feature
 def touches(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    input features touching the target features. Therefore the input and target geometry 
+    input features touching the target features. Therefore, the input and target geometry 
     must have at least one point in common and all common points lie on at least one boundary.
     So that the input and target interior do not share any point in common.
     """
@@ -103,10 +103,10 @@ def touches(client: GeoRapidClient, left_featurecollection: dict, right_featurec
 def within(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
     """
     Joins the input features from 'left' with the matching target features from 'right' for all
-    target features containing the input features. Therefore the input geometry 
+    target features containing the input features. Therefore, the input geometry 
     must be completely inside the target geometry. So that no points of the 
-    input geometry lie in the exterior of the target geometry, and at least 
-    one point of the interior of the input geometry lies in the interior of the target geometry.  
+    input geometry lie in the target's exterior geometry, and at least 
+    one point of the interior of the input geometry lies in the target's interior geometry.  
     """
     endpoint = '{0}/within'.format(client.url)
     json = {
