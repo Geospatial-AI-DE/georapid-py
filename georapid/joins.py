@@ -60,6 +60,11 @@ def crosses(client: GeoRapidClient, left_featurecollection: dict, right_featurec
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
 
 def intersects(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    input features intersecting the target features. Therefore the input and target geometry 
+    must have any point in common.
+    """
     endpoint = '{0}/intersects'.format(client.url)
     json = {
         'left': left_featurecollection,
