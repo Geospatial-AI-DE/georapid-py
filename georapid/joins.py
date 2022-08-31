@@ -33,6 +33,11 @@ def contains(client: GeoRapidClient, left_featurecollection: dict, right_feature
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
 
 def covers(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    input features covering the target features. Therefore no point of the target geometry must be 
+    outside of the input geometry.
+    """
     endpoint = '{0}/covers'.format(client.url)
     json = {
         'left': left_featurecollection,
