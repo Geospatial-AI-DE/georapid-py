@@ -101,6 +101,13 @@ def touches(client: GeoRapidClient, left_featurecollection: dict, right_featurec
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
 
 def within(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    target features containing the input features. Therefore the input geometry 
+    must be completely inside the target geometry. So that no points of the 
+    input geometry lie in the exterior of the target geometry, and at least 
+    one point of the interior of the input geometry lies in the interior of the target geometry.  
+    """
     endpoint = '{0}/within'.format(client.url)
     json = {
         'left': left_featurecollection,
