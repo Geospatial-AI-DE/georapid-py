@@ -73,6 +73,12 @@ def intersects(client: GeoRapidClient, left_featurecollection: dict, right_featu
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
 
 def overlaps(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    input features overlapping the target features. Therefore the input and target geometry 
+    must have the same dimension and at least one point not shared by the other. So that 
+    the intersection of their interiors results in a geometry having the same dimension.
+    """
     endpoint = '{0}/overlaps'.format(client.url)
     json = {
         'left': left_featurecollection,
