@@ -46,6 +46,12 @@ def covers(client: GeoRapidClient, left_featurecollection: dict, right_featureco
     return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
 
 def crosses(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    input features crossing the target features. Therefore the input and target geometry have some, 
+    but not all interior points in common. So that the intersection of the input and target geometry 
+    must be non-empty and must not equal the input nor the target geometry.
+    """
     endpoint = '{0}/crosses'.format(client.url)
     json = {
         'left': left_featurecollection,
