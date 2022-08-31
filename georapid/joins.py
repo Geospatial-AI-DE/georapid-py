@@ -18,6 +18,13 @@ from . client import GeoRapidClient
 
 
 def contains(client: GeoRapidClient, left_featurecollection: dict, right_featurecollection: dict):
+    """
+    Joins the input features from 'left' with the matching target features from 'right' for all
+    input features containing the target features. Therefore the target geometry 
+    must be completely inside the input geometry. So that no points of the 
+    target geometry lie in the exterior of the input geometry, and at least 
+    one point of the interior of the target geometry lies in the interior of the input geometry.  
+    """
     endpoint = '{0}/contains'.format(client.url)
     json = {
         'left': left_featurecollection,
