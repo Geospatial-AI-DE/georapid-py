@@ -30,8 +30,12 @@ def along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: f
     json = {
         'lat1': lat1,
         'lon1': lon1,
+        'lat2': lat2,
+        'lon2': lon2,
         'distances': distances,
         'offsets': offsets,
-        'unit': unit
+        'unit': str(unit)
     }
-    return requests.request('POST', endpoint, headers=client.auth_headers, json=json).json()
+    response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
+    response.raise_for_status()
+    return response.json()

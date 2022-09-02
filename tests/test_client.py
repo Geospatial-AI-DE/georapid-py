@@ -15,9 +15,12 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
+from georapid.geodetic import along
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
 import unittest
+
+from georapid.units import LinearUnit
 
 
 
@@ -392,3 +395,15 @@ class TestConnect(unittest.TestCase):
         features = geojson['features']
         self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
         self.assertEqual(1, len(features), "One result feature was expected!")
+
+    def test_along(self):
+        host = "geodetic.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        distances = [0, 1.5, 3.75, 5]
+        offsets = [0, -1.25, 1.75, 5]
+        geojson = along(client, self._latitudes[0], self._longitudes[0], self._latitudes[1], self._longitudes[1], distances, offsets, LinearUnit.km)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(len(distances), len(features), "Number of features are wrong!")
