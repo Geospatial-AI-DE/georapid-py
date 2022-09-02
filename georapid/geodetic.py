@@ -21,7 +21,7 @@ from . units import LinearUnit
 def along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: float, distances: list[float], offsets: list[float], unit: LinearUnit=LinearUnit.km):
     """
     Creates points along the line defined by lat1, lon1 and lat2, lon2.
-    The distances define the location along the line and the offsets define the lateral offset.
+    The distances define the location along the line, and the offsets define the lateral offset.
     The number of distances must equal the number of offsets.
     A combination of distances=[0, <line length>] and offsets=[0, 0] creates a point at the start and another at the end location.
     The unit defines the linear unit e.g. 'km' for the distances and the offsets.
