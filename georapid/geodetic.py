@@ -42,3 +42,22 @@ def create_points_along(client: GeoRapidClient, lat1: float, lon1: float, lat2: 
     response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
     response.raise_for_status()
     return response.json()
+
+def create_buffers(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+    """
+    Creates geodetic buffers representing a region or protected area around the specified locations.
+    The distance defines the location of the buffer's boundary.
+    The unit defines the linear unit e.g. 'km' for the distance.
+    The format can be GeoJSON or Esri.
+    """
+    endpoint = '{0}/buffer'.format(client.url)
+    json = {
+        'lat': latitudes,
+        'lon': longitudes,
+        'distance': distance,
+        'unit': str(unit),
+        'format': str(format)
+    }
+    response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
+    response.raise_for_status()
+    return response.json()
