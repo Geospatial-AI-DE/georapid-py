@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geodetic import along
+from georapid.geodetic import create_points_along
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
 import unittest
@@ -401,7 +401,7 @@ class TestConnect(unittest.TestCase):
         client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
         distances = [0, 1.5, 3.75, 5]
         offsets = [0, -1.25, 1.75, 5]
-        geojson = along(client, self._latitudes[0], self._longitudes[0], self._latitudes[1], self._longitudes[1], distances, offsets, LinearUnit.km)
+        geojson = create_points_along(client, self._latitudes[0], self._longitudes[0], self._latitudes[1], self._longitudes[1], distances, offsets, LinearUnit.km)
         self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
         self.assertTrue('features' in geojson, "GeoJSON response must have features!")
         features = geojson['features']

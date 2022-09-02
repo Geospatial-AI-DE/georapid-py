@@ -14,17 +14,19 @@
 import requests
 
 from . client import GeoRapidClient
+from . formats import OutFormat
 from . units import LinearUnit
 
 
 
-def along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: float, distances: list[float], offsets: list[float], unit: LinearUnit=LinearUnit.km):
+def create_points_along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: float, distances: list[float], offsets: list[float], unit: LinearUnit=LinearUnit.km, format: OutFormat=OutFormat.GEOJSON):
     """
     Creates points along the line defined by lat1, lon1 and lat2, lon2.
     The distances define the location along the line, and the offsets define the lateral offset.
     The number of distances must equal the number of offsets.
     A combination of distances=[0, <line length>] and offsets=[0, 0] creates a point at the start and another at the end location.
     The unit defines the linear unit e.g. 'km' for the distances and the offsets.
+    The format can be GeoJSON or Esri.
     """
     endpoint = '{0}/along'.format(client.url)
     json = {
@@ -34,7 +36,8 @@ def along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: f
         'lon2': lon2,
         'distances': distances,
         'offsets': offsets,
-        'unit': str(unit)
+        'unit': str(unit),
+        'format': str(format)
     }
     response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
     response.raise_for_status()
