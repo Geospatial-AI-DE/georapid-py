@@ -61,3 +61,16 @@ def create_buffers(client: GeoRapidClient, latitudes: list[float], longitudes: l
     response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
     response.raise_for_status()
     return response.json()
+
+def to_azimuth(client: GeoRapidClient, direction: str):
+    """
+    Calculates the corresponding azimuth using a 32-wind compass rose.
+    A direction of N equals an azimuth of 0 and a direction of S equals an azimuth of 180.
+    """
+    endpoint = '{0}/azimuth'.format(client.url)
+    params = {
+        'direction': direction
+    }
+    response = requests.request('GET', endpoint, headers=client.auth_headers, params=params)
+    response.raise_for_status()
+    return response.json()

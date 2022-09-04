@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geodetic import create_points_along, create_buffers
+from georapid.geodetic import create_points_along, create_buffers, to_azimuth
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
 import unittest
@@ -418,3 +418,13 @@ class TestConnect(unittest.TestCase):
         features = geojson['features']
         self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
         self.assertEqual(len(self._latitudes), len(features), "Number of features are wrong!")
+
+    def test_azimuth(self):
+        host = "geodetic.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        azimuth = to_azimuth(client, "N")
+        self.assertIsNotNone(azimuth, "The azimuth response must be initialized!")
+        self.assertEqual(0, azimuth, "Azimuth of 0 was expected!")
+        azimuth = to_azimuth(client, "S")
+        self.assertIsNotNone(azimuth, "The azimuth response must be initialized!")
+        self.assertEqual(180, azimuth, "Azimuth of 180 was expected!")
