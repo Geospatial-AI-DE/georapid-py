@@ -62,6 +62,25 @@ def create_buffers(client: GeoRapidClient, latitudes: list[float], longitudes: l
     response.raise_for_status()
     return response.json()
 
+def create_points_from_direction(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], azimuth: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+    """
+    Creates points using locations of observers, a distance and a direction representing the azimuth using degree targeting onto the observed location.
+    The unit defines the linear unit, e.g. 'km' for the distance.
+    The format can be GeoJSON or Esri.
+    """
+    endpoint = '{0}/direction'.format(client.url)
+    json = {
+        'lat': latitudes,
+        'lon': longitudes,
+        'azimuth': azimuth,
+        'distance': distance,
+        'unit': str(unit),
+        'format': str(format)
+    }
+    response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
+    response.raise_for_status()
+    return response.json()
+
 def to_azimuth(client: GeoRapidClient, direction: str):
     """
     Calculates the corresponding azimuth using a 32-wind compass rose.
