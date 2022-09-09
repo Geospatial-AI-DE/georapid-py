@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geodetic import create_points_along, create_buffers, create_buffers_from_points, create_points_from_direction, to_azimuth
+from georapid.geodetic import create_points_along, create_buffers, create_buffers_from_points, create_points_from_direction, create_path_from_directions, to_azimuth
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
 import unittest
@@ -463,6 +463,18 @@ class TestConnect(unittest.TestCase):
         features = geojson['features']
         self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
         self.assertEqual(len(self._latitudes), len(features), "Number of features are wrong!")
+
+    def test_path(self):
+        host = "geodetic.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        azimuths = [0, 25.5, 95.25]
+        distances = [5.5, 10.25, 25.75]
+        geojson = create_path_from_directions(client, self._latitudes[0], self._longitudes[0], azimuths, distances, LinearUnit.km)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(1, len(features), "Only one path must be created!")
 
     def test_azimuth(self):
         host = "geodetic.p.rapidapi.com"

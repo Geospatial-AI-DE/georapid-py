@@ -120,9 +120,6 @@ def create_buffers_from_points(client: GeoRapidClient, point_feature_collection:
 
     return create_buffers(client, latitudes, longitudes, distance, unit, format)
         
-
-    
-
 def create_points_from_direction(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], azimuth: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
     """
     Creates points using locations of observers, a distance and a direction representing the azimuth using degree targeting onto the observed location.
@@ -135,6 +132,25 @@ def create_points_from_direction(client: GeoRapidClient, latitudes: list[float],
         'lon': longitudes,
         'azimuth': azimuth,
         'distance': distance,
+        'unit': str(unit),
+        'format': str(format)
+    }
+    response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
+    response.raise_for_status()
+    return response.json()
+
+def create_path_from_directions(client: GeoRapidClient, latitude: float, longitude: float, azimuths: list[float], distances: list[float], unit='km', format: OutFormat=OutFormat.GEOJSON):
+    """
+    Creates a path using a start location, a combination of distances defining the location along the path and directions representing the azimuths at every vertex of the path.
+    The unit defines the linear unit, e.g. 'km' for the distance.
+    The format can be GeoJSON or Esri.
+    """
+    endpoint = '{0}/path'.format(client.url)
+    json = {
+        'lat': latitude,
+        'lon': longitude,
+        'azimuths': azimuths,
+        'distances': distances,
         'unit': str(unit),
         'format': str(format)
     }
