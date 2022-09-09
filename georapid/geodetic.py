@@ -158,6 +158,26 @@ def create_path_from_directions(client: GeoRapidClient, latitude: float, longitu
     response.raise_for_status()
     return response.json()
 
+def create_wedges(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], azimuth: float, azimuth_span: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+    """
+    Creates parametric wedges using locations of observers, a distance, a direction representing the azimuth using degree and an azimuth span targeting onto the observed location.
+    The unit defines the linear unit, e.g. 'km' for the distance.
+    The format can be GeoJSON or Esri.
+    """
+    endpoint = '{0}/wedge'.format(client.url)
+    json = {
+        'lat': latitudes,
+        'lon': longitudes,
+        'azimuth': azimuth,
+        'span': azimuth_span,
+        'distance': distance,
+        'unit': str(unit),
+        'format': str(format)
+    }
+    response = requests.request('POST', endpoint, headers=client.auth_headers, json=json)
+    response.raise_for_status()
+    return response.json()
+
 def to_azimuth(client: GeoRapidClient, direction: str):
     """
     Calculates the corresponding azimuth using a 32-wind compass rose.
