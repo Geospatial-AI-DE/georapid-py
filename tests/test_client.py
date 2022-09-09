@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geodetic import create_points_along, create_buffers, create_points_from_direction, to_azimuth
+from georapid.geodetic import create_points_along, create_buffers, create_buffers_from_points, create_points_from_direction, to_azimuth
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
 import unittest
@@ -418,6 +418,39 @@ class TestConnect(unittest.TestCase):
         features = geojson['features']
         self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
         self.assertEqual(len(self._latitudes), len(features), "Number of features are wrong!")
+
+    def test_buffer_points(self):
+        host = "geodetic.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        distance = 23.5
+        point_features = { 
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [self._longitudes[0], self._latitudes[0]]
+                },
+                "properties": {
+                    "name": "Dessau"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [self._longitudes[1], self._latitudes[1]]
+                },
+                "properties": {
+                    "name": "Bonn"
+                }
+            }]
+        }
+        geojson = create_buffers_from_points(client, point_features, distance, LinearUnit.km)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")
+        self.assertTrue('features' in geojson, "GeoJSON response must have features!")
+        features = geojson['features']
+        self.assertTrue(isinstance(features, list), "GeoJSON features must be an instance of list!")
+        self.assertEqual(len(point_features), len(features), "Number of features are wrong!")
 
     def test_direction(self):
         host = "geodetic.p.rapidapi.com"

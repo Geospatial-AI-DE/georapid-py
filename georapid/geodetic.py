@@ -62,6 +62,67 @@ def create_buffers(client: GeoRapidClient, latitudes: list[float], longitudes: l
     response.raise_for_status()
     return response.json()
 
+def create_buffers_from_points(client: GeoRapidClient, point_feature_collection: dict, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+    """
+    Creates geodetic buffers representing a region or protected area around the specified point features.
+    The distance defines the location of the buffer's boundary.
+    The unit defines the linear unit e.g. 'km' for the distance.
+    The format can be GeoJSON or Esri.
+    """
+    if not 'type' in point_feature_collection:
+        raise ValueError("Feature collection must contain 'type' property!")
+        
+    geojson_type = point_feature_collection['type']
+    if not 'FeatureCollection' == geojson_type:
+        raise ValueError("Feature collection must be of type 'FeatureCollection'!")
+
+    if 'crs' in point_feature_collection:
+        geojson_crs = point_feature_collection['crs']
+        if 'type' in geojson_crs and 'properties' in geojson_crs:
+            crs_type = geojson_crs['type']
+            if 'name' == crs_type:
+                crs_properties = geojson_crs['properties']
+                if 'name' in crs_properties:
+                    crs_name = str(crs_properties['name'])
+                    if not crs_name.endswith(':CRS84'):
+                        raise ValueError("Spatial reference '{0}' is not supported!".format(crs_name))
+                
+    if not 'features' in point_feature_collection:
+        raise ValueError("Feature collection must contain 'features' property!")
+
+    latitudes = []
+    longitudes = []
+    features = point_feature_collection['features']
+    for feature in features:
+        if not 'geometry' in feature:
+            raise ValueError("Feature must contain 'geometry' property!")
+
+        geometry = feature['geometry']
+        if not 'type' in geometry:
+            raise ValueError("Geometry must contain 'type' property!")
+
+        geometry_type = geometry['type']
+        if 'Point' != geometry_type:
+            raise ValueError("Geometry must represent a 'Point'!")
+
+        if not 'coordinates' in geometry:
+            raise ValueError("Geometry must contain 'coordinates' property!")
+        
+        coordinates = geometry['coordinates']
+        if not type(coordinates) == list:
+            raise ValueError("Coordinates must be of type list!")
+
+        if len(coordinates) < 2:
+            raise ValueError("Coordinates must contain at least X and Y!")
+
+        latitudes.append(coordinates[1])
+        longitudes.append(coordinates[0])
+
+    return create_buffers(client, latitudes, longitudes, distance, unit, format)
+        
+
+    
+
 def create_points_from_direction(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], azimuth: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
     """
     Creates points using locations of observers, a distance and a direction representing the azimuth using degree targeting onto the observed location.
