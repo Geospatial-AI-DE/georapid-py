@@ -6,7 +6,7 @@ API
 
    georapid.client.GeoRapidClient
    georapid.factory.EnvironmentClientFactory
-   georapid.fires
+   fires
    georapid.protests
    georapid.joins
 

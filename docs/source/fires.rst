@@ -1,0 +1,1 @@
+.. automodule:: georapid.fires
