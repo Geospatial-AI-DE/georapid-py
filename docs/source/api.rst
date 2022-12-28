@@ -15,4 +15,9 @@ API
    :undoc-members:
    :show-inheritance:
 
-.. autofunction:: georapid.protests.query
+.. autoclass:: georapid.factory.EnvironmentClientFactory
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autofunction:: georapid.protests.aggregate
