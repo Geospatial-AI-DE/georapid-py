@@ -6,8 +6,10 @@ API
 
    georapid.client.GeoRapidClient
    georapid.factory.EnvironmentClientFactory
-   fires
    georapid.protests
    georapid.joins
+
+.. toctree:
+   fires
 
 .. autofunction:: georapid.protests.aggregate
