@@ -3,6 +3,7 @@ API
 
 .. autosummary::
    :toctree: generated
+   :members:
 
    georapid.client.GeoRapidClient
    georapid.factory.EnvironmentClientFactory
