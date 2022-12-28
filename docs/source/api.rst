@@ -1,13 +1,9 @@
 API
 ===
 
-.. autosummary::
-   :toctree:
-
-   georapid.client.GeoRapidClient
-   georapid.factory.EnvironmentClientFactory
-
 .. toctree::
+   client
+   factory
    fires
    joins
    protests
