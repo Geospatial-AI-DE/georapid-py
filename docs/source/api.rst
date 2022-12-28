@@ -4,4 +4,4 @@ API
 .. autosummary::
    :toctree: generated
 
-   .. automodule:: georapid
+   georapid.client.GeoRapidClient
