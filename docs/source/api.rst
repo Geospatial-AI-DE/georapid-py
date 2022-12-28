@@ -6,16 +6,13 @@ API
 
    georapid.client.GeoRapidClient
    georapid.factory.EnvironmentClientFactory
-   georapid.fires.aggregate
-   georapid.fires.articles
-   georapid.fires.query
-   georapid.protests.aggregate
-   georapid.protests.articles
-   georapid.protests.query
-   georapid.joins.contains
-   georapid.joins.covers
-   georapid.joins.crosses
-   georapid.joins.intersects
-   georapid.joins.overlaps
-   georapid.joins.touches
-   georapid.joins.within
+   georapid.fires
+   georapid.protests
+   georapid.joins
+
+.. automodule:: georapid.fires
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. autofunction:: georapid.protests.query
