@@ -22,6 +22,7 @@ Creating a client for a specific host,
 you can use the ``georapid.factory.EnvironmentClientFactory.create_client_with_host()`` function:
 
 .. autofunction:: georapid.factory.EnvironmentClientFactory.create_client_with_host
+    :noindex:
 
 The ``host`` parameter must target the specific host like ``"geoprotests.p.rapidapi.com"``.
 Otherwise, :py:func:`georapid.factory.EnvironmentClientFactory.create_client_with_host` will raise a :exc:`ValueError`.
