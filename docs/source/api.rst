@@ -9,7 +9,7 @@ API
    georapid.protests
    georapid.joins
 
-.. toctree:
+.. toctree::
    fires
 
 .. autofunction:: georapid.protests.aggregate
