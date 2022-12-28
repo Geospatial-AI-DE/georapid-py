@@ -5,5 +5,6 @@ API
    client
    factory
    fires
+   geodetic
    joins
    protests
