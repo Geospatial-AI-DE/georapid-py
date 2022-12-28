@@ -21,10 +21,10 @@ The default client factory reads the API key from an environment variable named 
 Creating a client for a specific host,
 you can use the ``georapid.factory.EnvironmentClientFactory.create_client_with_host()`` function:
 
-.. autofunction:: georapid.environment.EnvironmentClientFactory.create_client_with_host
+.. autofunction:: georapid.factory.EnvironmentClientFactory.create_client_with_host
 
 The ``host`` parameter must target the specific host like ``"geoprotests.p.rapidapi.com"``.
-Otherwise, :py:func:`georapid.factory.EnvironmentClientFactory.create_client_with_host` will raise a value error.
+Otherwise, :py:func:`georapid.factory.EnvironmentClientFactory.create_client_with_host` will raise a :exc:`ValueError`.
 
 For example:
 
