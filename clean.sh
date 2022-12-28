@@ -12,6 +12,6 @@
 # limitations under the License.
 #!/bin/bash
 
-rm -r build/
+#rm -r build/
 rm -r dist/
 rm -r georapid.egg-info/
