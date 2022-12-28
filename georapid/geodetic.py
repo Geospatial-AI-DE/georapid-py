@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from typing import List
 import requests
 
 from . client import GeoRapidClient
@@ -19,7 +20,7 @@ from . units import LinearUnit
 
 
 
-def create_points_along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: float, distances: list[float], offsets: list[float], unit: LinearUnit=LinearUnit.km, format: OutFormat=OutFormat.GEOJSON):
+def create_points_along(client: GeoRapidClient, lat1: float, lon1: float, lat2: float, lon2: float, distances: List[float], offsets: List[float], unit: LinearUnit=LinearUnit.km, format: OutFormat=OutFormat.GEOJSON):
     """
     Creates points along the line defined by lat1, lon1 and lat2, lon2.
     The distances define the location along the line, and the offsets define the lateral offset.
@@ -43,7 +44,7 @@ def create_points_along(client: GeoRapidClient, lat1: float, lon1: float, lat2: 
     response.raise_for_status()
     return response.json()
 
-def create_buffers(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+def create_buffers(client: GeoRapidClient, latitudes: List[float], longitudes: List[float], distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
     """
     Creates geodetic buffers representing a region or protected area around the specified locations.
     The distance defines the location of the buffer's boundary.
@@ -120,7 +121,7 @@ def create_buffers_from_points(client: GeoRapidClient, point_feature_collection:
 
     return create_buffers(client, latitudes, longitudes, distance, unit, format)
         
-def create_points_from_direction(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], azimuth: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+def create_points_from_direction(client: GeoRapidClient, latitudes: List[float], longitudes: List[float], azimuth: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
     """
     Creates points using locations of observers, a distance and a direction representing the azimuth using degree targeting onto the observed location.
     The unit defines the linear unit, e.g. 'km' for the distance.
@@ -139,7 +140,7 @@ def create_points_from_direction(client: GeoRapidClient, latitudes: list[float],
     response.raise_for_status()
     return response.json()
 
-def create_path_from_directions(client: GeoRapidClient, latitude: float, longitude: float, azimuths: list[float], distances: list[float], unit='km', format: OutFormat=OutFormat.GEOJSON):
+def create_path_from_directions(client: GeoRapidClient, latitude: float, longitude: float, azimuths: List[float], distances: List[float], unit='km', format: OutFormat=OutFormat.GEOJSON):
     """
     Creates a path using a start location, a combination of distances defining the location along the path and directions representing the azimuths at every vertex of the path.
     The unit defines the linear unit, e.g. 'km' for the distance.
@@ -158,7 +159,7 @@ def create_path_from_directions(client: GeoRapidClient, latitude: float, longitu
     response.raise_for_status()
     return response.json()
 
-def create_wedges(client: GeoRapidClient, latitudes: list[float], longitudes: list[float], azimuth: float, azimuth_span: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
+def create_wedges(client: GeoRapidClient, latitudes: List[float], longitudes: List[float], azimuth: float, azimuth_span: float, distance: float, unit='km', format: OutFormat=OutFormat.GEOJSON):
     """
     Creates parametric wedges using locations of observers, a distance, a direction representing the azimuth using degree and an azimuth span targeting onto the observed location.
     The unit defines the linear unit, e.g. 'km' for the distance.
