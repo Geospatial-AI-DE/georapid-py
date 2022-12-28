@@ -19,7 +19,7 @@ To authorize against the endpoints being hosted on Rapid API you need to use you
 The default client factory reads the API key from an environment variable named 'x-rapidapi-key'.
 
 Creating a client for a specific host,
-you can use the ``georapid.factory.EnvironmentClientFactory.create_client_with_host()`` function:
+you can use the following function:
 
 .. autofunction:: georapid.factory.EnvironmentClientFactory.create_client_with_host
     :noindex:
