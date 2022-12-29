@@ -16,7 +16,7 @@ For best performance, the serverless cloud-backend calculate the geospatial aggr
 The serverless functions save these geospatial features for the last 90 days and yesterday should be the latest available date. 
 Without specifying a date, we have to calculate the geospatial features of the last 24 hours on-the-fly.
 
-.. _ImageLink: https://geospatial-ai.de/wp-content/uploads/2022/03/148703806-071bbb42-59c7-4cb8-aa42-cb08814db5df.png
+.. image:: https://geospatial-ai.de/wp-content/uploads/2022/03/148703806-071bbb42-59c7-4cb8-aa42-cb08814db5df.png
     Aggregated broadcasted news
 
 .. automodule:: georapid.protests
