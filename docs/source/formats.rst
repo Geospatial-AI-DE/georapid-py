@@ -1,5 +1,5 @@
 formats module
 ==============
 
-.. automodule:: georapid.formats
+.. autoclass:: georapid.formats.OutFormat
     :members:
