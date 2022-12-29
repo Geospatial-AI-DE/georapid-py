@@ -1,5 +1,5 @@
-Formats
-=======
+formats module
+==============
 
 .. automodule:: georapid.formats
     :members:
