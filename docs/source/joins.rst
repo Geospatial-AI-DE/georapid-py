@@ -69,5 +69,7 @@ So that no points of the input geometry lie in the target's exterior geometry, a
 
     Buildings being within a specified area of interest
 
+Functions
+---------
 .. automodule:: georapid.joins
     :members:
