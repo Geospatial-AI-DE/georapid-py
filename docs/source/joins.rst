@@ -106,6 +106,7 @@ For example:
         }]
     }
     geojson = within(client, left, right)
+    
 
 Functions
 ---------
