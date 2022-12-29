@@ -32,6 +32,7 @@ For example:
 >>> from georapid.client import GeoRapidClient
 >>> from georapid.factory import EnvironmentClientFactory
 >>> from georapid.protests import articles
+>>> host = "geoprotests.p.rapidapi.com"
 >>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
 >>> articles(client)
 "articles": [{ 
