@@ -74,6 +74,7 @@ For example:
 >>> from georapid.client import GeoRapidClient
 >>> from georapid.factory import EnvironmentClientFactory
 >>> from georapid.joins import within
+>>> host = "geojoins.p.rapidapi.com"
 >>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
 >>> lat = 51.83864
 >>> lon = 12.24555
