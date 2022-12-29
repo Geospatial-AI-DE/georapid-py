@@ -70,17 +70,16 @@ So that no points of the input geometry lie in the target's exterior geometry, a
     Buildings being within a specified area of interest
 
 For example:
-.. code:: python
 
-    from georapid.client import GeoRapidClient
-    from georapid.factory import EnvironmentClientFactory
-    from georapid.joins import within
-    client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
-    lat = 51.83864
-    lon = 12.24555
-    delta = 0.1
-    xmin, xmax, ymin, ymax = lon-delta, lon+delta, lat-delta, lat+delta
-    left = {
+>>> from georapid.client import GeoRapidClient
+>>> from georapid.factory import EnvironmentClientFactory
+>>> from georapid.joins import within
+>>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+>>> lat = 51.83864
+>>> lon = 12.24555
+>>> delta = 0.1
+>>> xmin, xmax, ymin, ymax = lon-delta, lon+delta, lat-delta, lat+delta
+>>> left = {
         "type": "FeatureCollection",
         "features": [{
             "type": "Feature",
@@ -106,8 +105,7 @@ For example:
             }
         }]
     }
-    geojson = within(client, left, right)
-
+>>> geojson = within(client, left, right)
 
 Functions
 ---------
