@@ -1,6 +1,6 @@
 formats module
 ==============
 
-.. autoclass:: georapid.formats.OutFormat
+.. automodule:: georapid.formats
     :members:
     :undoc-members:
