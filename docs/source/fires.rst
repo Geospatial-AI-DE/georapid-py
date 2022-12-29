@@ -16,5 +16,14 @@ For best sustainability, the serverless cloud-backend queries the articles from 
 
 .. image:: https://geospatial-ai.de/wp-content/uploads/2022/03/148703806-071bbb42-59c7-4cb8-aa42-cb08814db5df.png
 
+For example:
+
+>>> from georapid.client import GeoRapidClient
+>>> from georapid.factory import EnvironmentClientFactory
+>>> from georapid.fires import articles
+>>> host = "geofires.p.rapidapi.com"
+>>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+>>> articles(client)
+
 .. automodule:: georapid.fires
     :members:
