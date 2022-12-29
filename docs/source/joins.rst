@@ -71,6 +71,7 @@ So that no points of the input geometry lie in the target's exterior geometry, a
 
 For example:
 .. code-block:: python
+
     from georapid.client import GeoRapidClient
     from georapid.factory import EnvironmentClientFactory
     from georapid.joins import within
@@ -106,7 +107,6 @@ For example:
         }]
     }
     geojson = within(client, left, right)
-    
 
 Functions
 ---------
