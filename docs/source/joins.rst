@@ -70,7 +70,7 @@ So that no points of the input geometry lie in the target's exterior geometry, a
     Buildings being within a specified area of interest
 
 For example:
-.. code-block:: python
+.. code:: python
 
     from georapid.client import GeoRapidClient
     from georapid.factory import EnvironmentClientFactory
@@ -80,33 +80,33 @@ For example:
     lon = 12.24555
     delta = 0.1
     xmin, xmax, ymin, ymax = lon-delta, lon+delta, lat-delta, lat+delta
-    left = { \
-        "type": "FeatureCollection", \
-        "features": [{ \
-            "type": "Feature", \
-            "geometry": { \
-                "type": "Point", \
-                "coordinates": [lon, lat] \
-            }, \
-            "properties": { \
-                "id": "left_point" \
-            } \
-        }] \
-    } \
-    right = { \
-        "type": "FeatureCollection", \
-        "features": [{ \
-            "type": "Feature", \
-            "geometry": { \
-                "type": "Polygon", \
-                "coordinates": [[[xmin, ymax], [xmin, ymin], [xmax, ymin], [xmax, ymax], [xmin, ymax]]] \
-            }, \
-            "properties": { \
-                "id": "right_polygon" \
-            } \
-        }] \
-    } \
-    geojson = within(client, left, right) \
+    left = {
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [lon, lat]
+            },
+            "properties": {
+                "id": "left_point"
+            }
+        }]
+    }
+    right = {
+        "type": "FeatureCollection",
+        "features": [{
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [[[xmin, ymax], [xmin, ymin], [xmax, ymin], [xmax, ymax], [xmin, ymax]]]
+            },
+            "properties": {
+                "id": "right_polygon"
+            }
+        }]
+    }
+    geojson = within(client, left, right)
 
 
 Functions
