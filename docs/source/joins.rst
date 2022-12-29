@@ -80,33 +80,33 @@ For example:
     lon = 12.24555
     delta = 0.1
     xmin, xmax, ymin, ymax = lon-delta, lon+delta, lat-delta, lat+delta
-    left = { 
-    "type": "FeatureCollection",
-    "features": [{
-    "type": "Feature",
-    "geometry": {
-    "type": "Point",
-    "coordinates": [lon, lat]
-    },
-    "properties": {
-    "id": "left_point"
-    }
-    }]
-    }
-    right = { 
-    "type": "FeatureCollection",
-    "features": [{
-    "type": "Feature",
-    "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[xmin, ymax], [xmin, ymin], [xmax, ymin], [xmax, ymax], [xmin, ymax]]]
-    },
-    "properties": {
-    "id": "right_polygon"
-    }
-    }]
-    }
-    geojson = within(client, left, right)
+    left = { \
+        "type": "FeatureCollection", \
+        "features": [{ \
+            "type": "Feature", \
+            "geometry": { \
+                "type": "Point", \
+                "coordinates": [lon, lat] \
+            }, \
+            "properties": { \
+                "id": "left_point" \
+            } \
+        }] \
+    } \
+    right = { \
+        "type": "FeatureCollection", \
+        "features": [{ \
+            "type": "Feature", \
+            "geometry": { \
+                "type": "Polygon", \
+                "coordinates": [[[xmin, ymax], [xmin, ymin], [xmax, ymin], [xmax, ymax], [xmin, ymax]]] \
+            }, \
+            "properties": { \
+                "id": "right_polygon" \
+            } \
+        }] \
+    } \
+    geojson = within(client, left, right) \
 
 
 Functions
