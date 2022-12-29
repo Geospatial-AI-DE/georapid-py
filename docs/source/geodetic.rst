@@ -57,6 +57,7 @@ Creates parametric wedges using locations of observers, a distance, a direction 
     Two parametric wedges located at Bonn and Dessau heading 150 km with an azimuth of 45 degree and a span of 25 degree
 
 For example:
+
 >>> from georapid.client import GeoRapidClient
 >>> from georapid.factory import EnvironmentClientFactory
 >>> from georapid.geodetic import create_wedges
@@ -68,7 +69,6 @@ For example:
 >>> azimuth_span = 20
 >>> distance = 23.5
 >>> geojson = create_wedges(client, latitudes, longitudes, azimuth, azimuth_span, distance, LinearUnit.km)
-
 
 Functions
 ---------
