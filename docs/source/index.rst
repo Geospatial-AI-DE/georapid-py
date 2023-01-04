@@ -12,7 +12,7 @@ By analyzing location-enabled things an analyst is empowered to gain insights in
 Please, check out the `RapidAPI Account Creation and Management Guide <https://docs.rapidapi.com/docs/account-creation-and-settings>`__.
 
 
-Check out the :doc:`usage` section for further information, including
+Take a look at :doc:`usage` section for further information, including
 how to :ref:`installation` the project.
 
 .. note::
