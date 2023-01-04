@@ -10,6 +10,9 @@ By analyzing location-enabled things an analyst is empowered to gain insights in
 ## Next steps
 Please, check out the [RapidAPI Account Creation and Management Guide](https://docs.rapidapi.com/docs/account-creation-and-settings).
 
+Start with the [Usage](https://georapid.readthedocs.io/en/latest/usage.html) section for further information, including
+how to install the Python module.
+
 ## Features
 ### [geoprotests API](https://rapidapi.com/gisfromscratch/api/geoprotests/)
 *Query protests worldwide and visualize them using spatial aggregations.*
