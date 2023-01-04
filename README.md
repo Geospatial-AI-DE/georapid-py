@@ -1,4 +1,4 @@
-# Introducing Geospatial Knowledge for Geospatial Intelligence
+# Geospatial Knowledge for Geospatial Intelligence
 Query broadcasted news worldwide and visualize them using spatial aggregations. This modern Python module represents an idiomatic client accessing the [Geospatial Knowledge APIs](https://geospatial-ai.de/?rara_portfolio_categories=api-services) being hosted on [Rapid API Hub](https://rapidapi.com/hub). Please, check out the [RapidAPI Account Creation and Management Guide](https://docs.rapidapi.com/docs/account-creation-and-settings).
 
 ## Features
