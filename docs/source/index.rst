@@ -13,7 +13,7 @@ Please, check out the `RapidAPI Account Creation and Management Guide <https://d
 
 
 Start with the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+how to :ref:`installation` the Python module.
 
 .. note::
 
