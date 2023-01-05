@@ -1,6 +1,6 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Geospatial-AI-DE/georapid-py)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Geospatial-AI-DE/georapid-py)](https://pypi.org/project/georapid)
 ![GitHub License](https://img.shields.io/github/license/Geospatial-AI-DE/georapid-py)
-![Read the Docs](https://img.shields.io/readthedocs/georapid)
+[![Read the Docs](https://img.shields.io/readthedocs/georapid)](https://georapid.readthedocs.io/en/latest)
 [![Tweet Me](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FGeospatial-AI-DE%2Fgeorapid-py)](https://twitter.com/intent/tweet?text=Outstanding:&url=https%3A%2F%2Fgithub.com%2FGeospatial-AI-DE%2Fgeorapid-py)
 
 # Geospatial Knowledge supporting Intelligence workflows
