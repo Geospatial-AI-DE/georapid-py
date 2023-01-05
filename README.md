@@ -1,3 +1,8 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Geospatial-AI-DE/georapid-py)
+![GitHub License](https://img.shields.io/github/license/Geospatial-AI-DE/georapid-py)
+![Read the Docs](https://img.shields.io/readthedocs/georapid)
+[![Tweet Me](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FGeospatial-AI-DE%2Fgeorapid-py)](https://twitter.com/intent/tweet?text=Outstanding:&url=https%3A%2F%2Fgithub.com%2FGeospatial-AI-DE%2Fgeorapid-py)
+
 # Geospatial Knowledge supporting Intelligence workflows
 Query broadcasted news worldwide and visualize them using spatial aggregations. This modern Python module represents an idiomatic client accessing the [Geospatial Knowledge APIs](https://geospatial-ai.de/?rara_portfolio_categories=api-services) being hosted on [Rapid API Hub](https://rapidapi.com/hub). 
 
