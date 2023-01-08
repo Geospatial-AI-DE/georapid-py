@@ -86,6 +86,46 @@ For example:
 >>> aggregate(client, format=OutFormat.ESRI)
 {'geometryType': 'esriGeometryPolygon', 'spatialReference': {'wkid': 102100}, 'fields': [{'name': 'count', 'type': 'esriFieldTypeInteger'}, {'name': 'timestamp', 'type': 'esriFieldTypeDate'}], 'features': ...
 
+
+We are ging to use the `ArcGIS API for Python <https://developers.arcgis.com/python>`__ which enables access to ready-to-use maps and curated geographic data from Esri and other authoritative sources, and works with your own data as well. 
+It integrates well with the scientific Python ecosystem and includes rich support for Pandas and Jupyter notebook.
+For more details take a closer look at `Ìnstall and Setup <https://developers.arcgis.com/python/guide/install-and-set-up>`__. 
+
+Choose your favourite enironment e.g. conda or pip, create a dedicated environment, and enter the following at the prompt:
+
+```
+conda install -c esri arcgis
+pip install arcgis
+```
+
+Start a new Juypter notebook instance:
+
+```
+jupyter notebook
+```
+
+Render the aggregated news related to protests from yesterday:
+
+>>> from georapid.client import GeoRapidClient
+>>> from georapid.factory import EnvironmentClientFactory
+>>> from georapid.protests import aggregate
+>>> from georapid.formats import OutFormat
+
+>>> from arcgis import GIS
+>>> from arcgis.features import FeatureSet
+
+>>> host = "geoprotests.p.rapidapi.com"
+>>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+>>> features_dict = aggregate(client, format=OutFormat.ESRI)
+>>> feature_set = FeatureSet.from_dict(features_dict)
+>>> feature_set
+
+>>> gis = GIS()
+>>> map_view = gis.map()
+>>> map_view
+
+>>> feature_set.sdf.spatial.plot(map_view)
+
 Terms of use
 ------------
 We designed the geospatial intelligence API services for research and analysis of geospatial knowledge worldwide. 
