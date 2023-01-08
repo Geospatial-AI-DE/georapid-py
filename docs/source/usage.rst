@@ -80,12 +80,11 @@ You need to import the ``aggregate`` function from the module and call it using 
 If you do not specifiy a date, the function returns the aggregated articles from yesterday as geospatial features.
 
 For example:
+
 >>> from georapid.protests import aggregate
 >>> from georapid.formats import OutFormat
 >>> aggregate(client, format=OutFormat.ESRI)
 {'geometryType': 'esriGeometryPolygon', 'spatialReference': {'wkid': 102100}, 'fields': [{'name': 'count', 'type': 'esriFieldTypeInteger'}, {'name': 'timestamp', 'type': 'esriFieldTypeDate'}], 'features': ...
-
-
 
 Terms of use
 ------------
