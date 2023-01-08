@@ -53,6 +53,40 @@ For example:
    ...
 ]
 
+Mapping
+-------
+
+There are specific service endpoints offering location-enabled entities also known as geospatial features. 
+As an analyst you need to get some insights into the spatial patterns of the domain-specific problems you want to solve.
+For instance, mapping all news related to protests by using the mentioned locations e.g. cities, administrative regions and so on usually leads to an overload of information.
+Therefore, the location-enabled service endpoints offer spatial aggregations. 
+
+Spatial binning aggregates locations into a pre-defined spatial grid structure. 
+The spatial grid comprises distinct cells having a two-dimensional geometry (e.g. rectangle or polygon). 
+We created a simple hexagonal grid supporting the WGS84 and Web Mercator spatial reference. 
+The spatial grid offers a point in grid aggregation. 
+As a result, the aggregation contains the number of locations intersecting each grid cell in an attribute called hit count.
+
+There are two well-known output formats supporting feature representations. 
+GeoJSON is a format for encoding a variety of geographic data structures. 
+A GeoJSON object may represent a geometry, a feature, or a collection of features. 
+GeoJSON supports the following geometry types: Point, LineString, Polygon, MultiPoint, MultiLineString, and MultiPolygon. 
+
+Esri JSON is a variant of JSON that has been specialized for use with ArcGIS. 
+One notable difference between Esri JSON and GeoJSON is that Esri JSON uses a slightly different data model for representing geographic features. 
+While GeoJSON uses a simple "feature" object with a "geometry" and an optional "properties" member, Esri JSON uses a more complex "feature set" object that includes a "displayFieldName", "fieldAliases", "geometryType", and "spatialReference" in addition to an array of "features" with "attributes" and "geometry" members.
+
+You need to import the ``aggregate`` function from the module and call it using a valid client instance.
+If you do not specifiy a date, the function returns the aggregated articles from yesterday as geospatial features.
+
+For example:
+>>> from georapid.protests import aggregate
+>>> from georapid.formats import OutFormat
+>>> aggregate(client, format=OutFormat.ESRI)
+{'geometryType': 'esriGeometryPolygon', 'spatialReference': {'wkid': 102100}, 'fields': [{'name': 'count', 'type': 'esriFieldTypeInteger'}, {'name': 'timestamp', 'type': 'esriFieldTypeDate'}], 'features': ...
+
+
+
 Terms of use
 ------------
 We designed the geospatial intelligence API services for research and analysis of geospatial knowledge worldwide. 
