@@ -93,14 +93,14 @@ For more details take a closer look at `Install and Setup <https://developers.ar
 
 Choose your favourite enironment e.g. conda or pip, create a dedicated environment, and enter the following at the prompt:
 
-.. code-block:: bash
+.. code-block:: console
 
    conda install -c esri arcgis
    pip install arcgis
 
 Start a new Juypter notebook instance:
 
-.. code-block:: bash
+.. code-block:: console
 
    jupyter notebook
 
