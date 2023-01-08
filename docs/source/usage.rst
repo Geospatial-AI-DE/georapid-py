@@ -93,16 +93,16 @@ For more details take a closer look at `Ìnstall and Setup <https://developers.a
 
 Choose your favourite enironment e.g. conda or pip, create a dedicated environment, and enter the following at the prompt:
 
-```
-conda install -c esri arcgis
-pip install arcgis
-```
+.. code-block:: bash
+
+   conda install -c esri arcgis
+   pip install arcgis
 
 Start a new Juypter notebook instance:
 
-```
-jupyter notebook
-```
+.. code-block:: bash
+
+   jupyter notebook
 
 Render the aggregated news related to protests from yesterday:
 
@@ -123,6 +123,8 @@ Render the aggregated news related to protests from yesterday:
 >>> gis = GIS()
 >>> map_view = gis.map()
 >>> map_view
+
+.. image:: https://user-images.githubusercontent.com/921231/211210746-165bda47-0420-4b53-833c-ea295fdf6203.png
 
 >>> feature_set.sdf.spatial.plot(map_view)
 
