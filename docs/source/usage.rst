@@ -15,8 +15,8 @@ To use georapid, first install it using pip:
 Creating clients
 ----------------
 
-To authorize against the endpoints being hosted on Rapid API you need to use your own Rapid API Key.
-The default client factory reads the API key from an environment variable named 'x-rapidapi-key'.
+To authorize against the endpoints being hosted on Rapid API you need to use your own Rapid API key.
+The default client factory reads the API key from an environment variable named 'x_rapidapi_key'.
 
 Creating a client for a specific host,
 you can use the following function:
@@ -25,7 +25,13 @@ you can use the following function:
     :noindex:
 
 The ``host`` parameter must target the specific host like ``"geoprotests.p.rapidapi.com"``.
+Furthermore, the factory directly access ``os.environ['x_rapidapi_key']`` and uses the specified API key as a header parameter.
 Otherwise, :py:func:`georapid.factory.EnvironmentClientFactory.create_client_with_host` will raise a :exc:`ValueError`.
+
+Every service endpoint has its own module. 
+The protests module offers access to the news articles mentioning occurred protests or demonstrations.
+You need to import the ``articles`` function from the module and call it using a valid client instance.
+If you do not specifiy a date, the function returns the corresponding articles from yesterday as a JSON object.
 
 For example:
 
