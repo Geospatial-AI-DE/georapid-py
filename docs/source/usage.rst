@@ -89,7 +89,7 @@ For example:
 
 We are ging to use the `ArcGIS API for Python <https://developers.arcgis.com/python>`__ which enables access to ready-to-use maps and curated geographic data from Esri and other authoritative sources, and works with your own data as well. 
 It integrates well with the scientific Python ecosystem and includes rich support for Pandas and Jupyter notebook.
-For more details take a closer look at `Ìnstall and Setup <https://developers.arcgis.com/python/guide/install-and-set-up>`__. 
+For more details take a closer look at `Install and Setup <https://developers.arcgis.com/python/guide/install-and-set-up>`__. 
 
 Choose your favourite enironment e.g. conda or pip, create a dedicated environment, and enter the following at the prompt:
 
