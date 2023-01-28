@@ -44,3 +44,12 @@ def count(client: GeoRapidClient):
     response = requests.request('GET', endpoint, headers=client.auth_headers)
     response.raise_for_status()
     return response.json()
+
+def date_extent(client: GeoRapidClient):
+    """
+    Returns the valid date extent (start and end date) of the armed conflict events as a JSON result.
+    """
+    endpoint = '{0}/dateExtent'.format(client.url)
+    response = requests.request('GET', endpoint, headers=client.auth_headers)
+    response.raise_for_status()
+    return response.json()
