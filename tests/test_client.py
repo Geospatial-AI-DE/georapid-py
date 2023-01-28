@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geoconflicts import aggregate as aggregate_conflicts, cluster as cluster_conflicts, count as count_conflicts, date_extent as date_extent_conflicts
+from georapid.geoconflicts import aggregate as aggregate_conflicts, cluster as cluster_conflicts, count as count_conflicts, date_extent as date_extent_conflicts, extent as extent_conflicts
 from georapid.geodetic import create_points_along, create_buffers, create_buffers_from_points, create_points_from_direction, create_path_from_directions, create_wedges, to_azimuth
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
@@ -527,3 +527,20 @@ class TestConnect(unittest.TestCase):
         self.assertTrue('start' in date_extent_result, "The date extent result must contain a 'start' property!")
         start = date_extent_result['start']
         self.assertEquals(start, '2020-01-01', "The conflict start date must equal 2020-01-01!")
+
+    def test_extent(self):
+        host = "geoconflicts.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        extent_result = extent_conflicts(client)
+        self.assertTrue('xmin' in extent_result, "The spatial extent result must contain a 'xmin' property!")
+        xmin = extent_result['xmin']
+        self.assertGreater(xmin, -181, "The conflict xmin must be greater than -181!")
+        self.assertTrue('ymin' in extent_result, "The spatial extent result must contain a 'ymin' property!")
+        ymin = extent_result['ymin']
+        self.assertGreater(ymin, -91, "The conflict ymin must be greater than -91!")
+        self.assertTrue('xmax' in extent_result, "The spatial extent result must contain a 'xmax' property!")
+        xmax = extent_result['xmax']
+        self.assertLess(xmax, 181, "The conflict xmax must be less than 181!")
+        self.assertTrue('ymax' in extent_result, "The spatial extent result must contain a 'ymax' property!")
+        ymax = extent_result['ymax']
+        self.assertLess(ymax, 91, "The conflict ymax must be less than 91!")

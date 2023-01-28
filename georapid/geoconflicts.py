@@ -71,3 +71,12 @@ def date_extent(client: GeoRapidClient):
     response = requests.request('GET', endpoint, headers=client.auth_headers)
     response.raise_for_status()
     return response.json()
+
+def extent(client: GeoRapidClient):
+    """
+    Returns the valid spatial extent (xmin, ymin, xmax, ymax) of the armed conflict events as a JSON result.
+    """
+    endpoint = '{0}/extent'.format(client.url)
+    response = requests.request('GET', endpoint, headers=client.auth_headers)
+    response.raise_for_status()
+    return response.json()
