@@ -21,6 +21,7 @@ from . formats import OutFormat
 def aggregate(client: GeoRapidClient, date: datetime = datetime(2022, 2, 24), format = OutFormat.GEOJSON):
     """
     Aggregates the armed conflict events using a spatial grid and returns the features as hexagonal bins.
+    You must define a specific date intersecting the valid date extent.
     The underlying event database collects data since 2020-01-01. 
     The format can be GeoJSON or Esri JSON.
     """
@@ -35,6 +36,23 @@ def aggregate(client: GeoRapidClient, date: datetime = datetime(2022, 2, 24), fo
     response.raise_for_status()
     return response.json()
 
+def cluster(client: GeoRapidClient, date: datetime = datetime(2022, 2, 24), format = OutFormat.GEOJSON):
+    """
+    Creates spatial clusters using the armed conflict events and returns the features as cluster polygons. 
+    You must define a specific date intersecting the valid date extent.
+    The underlying event database collects data since 2020-01-01. 
+    The format can be GeoJSON or Esri JSON.
+    """
+    endpoint = '{0}/cluster'.format(client.url)
+    params = {
+        'format': str(format)
+    }
+    if date:
+        params['date'] = datetime.strftime(date, '%Y-%m-%d')
+
+    response = requests.request('GET', endpoint, headers=client.auth_headers, params=params)
+    response.raise_for_status()
+    return response.json()
 
 def count(client: GeoRapidClient):
     """
