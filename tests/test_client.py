@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geoconflicts import count as count_conflicts
+from georapid.geoconflicts import count as count_conflicts, aggregate as aggregate_conflicts
 from georapid.geodetic import create_points_along, create_buffers, create_buffers_from_points, create_points_from_direction, create_path_from_directions, create_wedges, to_azimuth
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON
@@ -507,3 +507,9 @@ class TestConnect(unittest.TestCase):
         self.assertTrue('count' in count_result, "The count result must contain a count property!")
         count = count_result['count']
         self.assertGreater(count, 0, "The conflict count must be greater than 0!")
+
+    def test_aggregate_conflicts(self):
+        host = "geoconflicts.p.rapidapi.com"
+        client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+        geojson = aggregate_conflicts(client)
+        self.assertIsNotNone(geojson, "GeoJSON response must be initialized!")

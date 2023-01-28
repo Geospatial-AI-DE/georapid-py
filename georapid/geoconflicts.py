@@ -18,6 +18,24 @@ from . client import GeoRapidClient
 from . formats import OutFormat
 
 
+def aggregate(client: GeoRapidClient, date: datetime = datetime(2022, 2, 24), format = OutFormat.GEOJSON):
+    """
+    Aggregates the armed conflict events using a spatial grid and returns the features as hexagonal bins.
+    The underlying event database collects data since 2020-01-01. 
+    The format can be GeoJSON or Esri JSON.
+    """
+    endpoint = '{0}/aggregate'.format(client.url)
+    params = {
+        'format': str(format)
+    }
+    if date:
+        params['date'] = datetime.strftime(date, '%Y-%m-%d')
+
+    response = requests.request('GET', endpoint, headers=client.auth_headers, params=params)
+    response.raise_for_status()
+    return response.json()
+
+
 def count(client: GeoRapidClient):
     """
     Returns the number of armed conflict events as a JSON result.
