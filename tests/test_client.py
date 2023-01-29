@@ -15,7 +15,7 @@ from georapid.client import GeoRapidClient
 from georapid.factory import EnvironmentClientFactory
 from georapid.protests import aggregate as aggregate_protests, articles as articles_protests, hotspots as hotspots_protests
 from georapid.fires import aggregate as aggregate_fires, articles as articles_fires, query as query_fires
-from georapid.geoconflicts import aggregate as aggregate_conflicts, cluster as cluster_conflicts, count as count_conflicts, date_extent as date_extent_conflicts, extent as extent_conflicts, query as query_conflicts
+from georapid.conflicts import aggregate as aggregate_conflicts, cluster as cluster_conflicts, count as count_conflicts, date_extent as date_extent_conflicts, extent as extent_conflicts, query as query_conflicts
 from georapid.geodetic import create_points_along, create_buffers, create_buffers_from_points, create_points_from_direction, create_path_from_directions, create_wedges, to_azimuth
 from georapid.joins import contains, covers, crosses, intersects, overlaps, touches, within
 from georapid.geojson import GeoJSON

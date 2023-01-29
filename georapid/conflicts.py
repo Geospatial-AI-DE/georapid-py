@@ -14,8 +14,8 @@
 from datetime import datetime
 import requests
 
-from . client import GeoRapidClient
-from . formats import OutFormat
+from .client import GeoRapidClient
+from .formats import OutFormat
 
 
 def aggregate(client: GeoRapidClient, date: datetime = datetime(2022, 2, 24), format = OutFormat.GEOJSON):
