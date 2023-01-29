@@ -18,6 +18,7 @@ from .client import GeoRapidClient
 from .formats import OutFormat
 
 
+
 def aggregate(client: GeoRapidClient, date: datetime = datetime(2022, 2, 24), format = OutFormat.GEOJSON):
     """
     Aggregates the armed conflict events using a spatial grid and returns the features as hexagonal bins.
