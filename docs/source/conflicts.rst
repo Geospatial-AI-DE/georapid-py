@@ -5,7 +5,7 @@ Query armed conflict events worldwide and visualize them using spatial aggregati
 This service aggregates, clusters, and filters thousands of armed conflict events using the raw `UCDP Candidate Events Dataset <(https://ucdp.uu.se/downloads/index.html#candidate)>__` as the ground truth.
 
 Please cite:
-* Hegre, Håvard, Mihai Croicu, Kristine Eck, and Stina Högbladh (July 2020)
+- Hegre, Håvard, Mihai Croicu, Kristine Eck, and Stina Högbladh (July 2020)
   Introducing the UCDP Candidate Events Dataset. Research & Politics
 
 We are using a web mercator projection using a grid size being optimized for geographic visualization. Each grid cell has a count attribute representing the number of armed conflict events of the corresponding grid cell.
