@@ -2,7 +2,7 @@ conflicts module
 ================
 
 Query armed conflict events worldwide and visualize them using spatial aggregations.
-This service aggregates, clusters, and filters thousands of armed conflict events using the raw `UCDP Candidate Events Dataset <https://ucdp.uu.se/downloads/index.html#candidate>__` as the ground truth.
+This service aggregates, clusters, and filters thousands of armed conflict events using the raw `UCDP Candidate Events Dataset <https://ucdp.uu.se/downloads/index.html#candidate>`__ as the ground truth.
 
 Please cite:
 
