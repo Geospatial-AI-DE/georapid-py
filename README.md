@@ -21,6 +21,8 @@ how to install the Python module.
 ## Features
 ### [geoprotests API](https://rapidapi.com/gisfromscratch/api/geoprotests/)
 *Query protests worldwide and visualize them using spatial aggregations.*
+### [geoconflicts API](https://rapidapi.com/gisfromscratch/api/geoconflicts/)
+*Query armed conflict events worldwide and visualize them using spatial aggregations.*
 ### [geofires API](https://rapidapi.com/gisfromscratch/api/geofires/)
 *Query wildfires worldwide and visualize them using spatial aggregations.*
 ### [geojoins API](https://rapidapi.com/gisfromscratch/api/geojoins/)
@@ -29,6 +31,12 @@ how to install the Python module.
 *Enables various geodetic functions like buffers, points from distance and direction, points along path and wedge construction.*
 
 ## Ready to use
-The geoprotests and geofires services offer ready-to-use geospatial features representing broadcasted news related to various themes. You can use these geospatial features to build various mapping and geospatial applications. The underlying serverless cloud-backend analyses raw geospatial locations of news articles provided by the Global Database of Events, Language and Tone (GDELT) Project (https://www.gdeltproject.org/).
+The geoprotests and geofires services offer ready-to-use geospatial features representing broadcasted news related to various themes. The underlying serverless cloud-backend analyses raw geospatial locations of news articles provided by the [Global Database of Events, Language and Tone (GDELT) Project](https://www.gdeltproject.org/).
 
-Every geospatial result support the GeoJSON and Esri FeatureSet format out of the box. All endpoints support a date parameter for filtering the geospatial features. For best sustainability, the serverless cloud-backend queries the articles from the knowledge graph and calculates the geospatial features on-the-fly.
+The geoconflicts service offer ready-to-use geospatial features representing armed conflicts since 2020-01-01. The underlying serverless cloud-backend analyses raw armed conflicts of the [Upsalla Conflict Data Program (UCDP)](https://ucdp.uu.se/downloads/index.html#candidate).
+
+Please cite:
+* Hegre, Håvard, Mihai Croicu, Kristine Eck, and Stina Högbladh (July 2020)
+Introducing the UCDP Candidate Events Dataset. Research & Politics
+
+Every geospatial result support the GeoJSON and Esri FeatureSet format out of the box. All endpoints support a date parameter for filtering the geospatial features. For best sustainability, the serverless cloud-backend queries the articles from the knowledge graph and calculates the geospatial features on-the-fly. You can use these geospatial features to build various mapping and geospatial applications.
