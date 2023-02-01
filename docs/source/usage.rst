@@ -137,4 +137,10 @@ Redistribution
 --------------
 You may redistribute, republish, and mirror the geospatial datasets in any form. 
 However, any use or redistribution of the geospatial datasets and results must include a citation to GEOINT API services and a link to our website `Geospatial AI <https://geospatial-ai.de>`__.
-The underlying serverless cloud-backend analyses raw geospatial locations of news articles provided by the `Global Database of Events, Language and Tone (GDELT) Project <https://www.gdeltproject.org>`__.
+The underlying serverless cloud-backend analyses raw geospatial locations of news articles provided by the `Global Database of Events, Language and Tone (GDELT) Project <https://www.gdeltproject.org>`__, 
+and raw armed conflicts of the `Upsalla Conflict Data Program (UCDP) <https://ucdp.uu.se/downloads/index.html#candidate>`__.
+
+Please cite:
+
+- Hegre, Håvard, Mihai Croicu, Kristine Eck, and Stina Högbladh (July 2020)
+  Introducing the UCDP Candidate Events Dataset. Research & Politics
