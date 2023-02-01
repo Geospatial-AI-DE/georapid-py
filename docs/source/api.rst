@@ -4,6 +4,7 @@ API
 .. toctree::
    client
    factory
+   conflicts
    fires
    formats
    geodetic
