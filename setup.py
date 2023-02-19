@@ -22,15 +22,15 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
 
 setuptools.setup(
     name='georapid',
-    version='0.2b1',
+    version='0.2',
     author='Jan Tschada',
     author_email='gisfromscratch@live.de',
-    description='Query broadcasted news worldwide and visualize them using spatial aggregations.',
+    description='Query broadcasted news/events worldwide and visualize them using spatial aggregations.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/Geospatial-AI-DE/georapid-py',
     packages=['georapid'],
-    install_requires=[],
+    install_requires=['requests'],
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: Apache Software License',
