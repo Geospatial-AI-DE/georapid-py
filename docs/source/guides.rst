@@ -19,19 +19,31 @@ Step 1: Create a dedicated environment
 Choose your favourite enironment e.g. conda or pip and create a dedicated environment.
 Enter the following at the prompt:
 
+Using conda:
 .. code-block:: console
 
    conda create -n geoint
+
+Using pipenv:
+.. code-block:: console
+
    python -m venv geoint
 
 Activate the dedicated environment:
 
+Using conda:
 .. code-block:: console
 
    conda activate geoint
-   # Linux
+
+Using pipenv on Linux:
+.. code-block:: console
+
    source geoint/bin/activate
-   # Windows
+
+Using pipenv on Windows:
+.. code-block:: console
+
    geoint/Scripts/activate
 
 Step 2: Install and Setup packages
