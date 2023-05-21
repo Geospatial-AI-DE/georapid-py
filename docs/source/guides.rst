@@ -86,12 +86,13 @@ Start a new Juypter notebook instance:
 Create new notebook named ``Mapping Protests``.
 Add the following imports and execute the cell:
 
->>> from arcgis import GIS
->>> from arcgis.features import FeatureSet
->>> from georapid.client import GeoRapidClient
->>> from georapid.factory import EnvironmentClientFactory
->>> from georapid.formats import OutFormat
->>> from georapid.protests import aggregate
+.. code-block:: python
+    from arcgis import GIS
+    from arcgis.features import FeatureSet
+    from georapid.client import GeoRapidClient
+    from georapid.factory import EnvironmentClientFactory
+    from georapid.formats import OutFormat
+    from georapid.protests import aggregate
 
 Create a client instance:
 
