@@ -87,6 +87,7 @@ Create new notebook named ``Mapping Protests``.
 Add the following imports and execute the cell:
 
 .. code-block:: python
+
     from arcgis import GIS
     from arcgis.features import FeatureSet
     from georapid.client import GeoRapidClient
@@ -96,8 +97,10 @@ Add the following imports and execute the cell:
 
 Create a client instance:
 
->>> host = "geoprotests.p.rapidapi.com"
->>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+.. code-block:: python
+
+    host = "geoprotests.p.rapidapi.com"
+    client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
 
 .. warning::
     The ``host`` parameter must target the specific host like ``"geoprotests.p.rapidapi.com"``.
@@ -106,35 +109,41 @@ Create a client instance:
 
 Connect to ArcGIS Online anonymously and display a map view:
 
->>> gis = GIS()
->>> world_map = gis.map()
->>> world_map
+.. code-block:: python
+
+    gis = GIS()
+    world_map = gis.map()
+    world_map
 
 Step 4: Map the broadcasted news related to protests of the last 24 hours
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 You define some utility functions plotting the broadcasted news as aggregated polygon features.
 Add the following utility function:
 
->>> def plot_aggregated(map_view, spatial_df, column='count'):
->>> """
->>> Plots the spatial dataframe as classified polygons using the specified map view.
->>> """
->>> if spatial_df.empty:
->>>     print("The dataframe is empty!")
->>> else:
->>>     spatial_df.spatial.plot(map_view,
->>>                             renderer_type='c', # for class breaks renderer
->>>                             method='esriClassifyNaturalBreaks', # classification algorithm
->>>                             class_count=5, # choose the number of classes
->>>                             col=column, # numeric column to classify
->>>                             cmap='YlOrRd', # color map to pick colors from for each class
->>>                             alpha=0.35 # specify opacity
->>>     )
+.. code-block:: python
+
+    def plot_aggregated(map_view, spatial_df, column='count'):
+    """
+    Plots the spatial dataframe as classified polygons using the specified map view.
+    """
+    if spatial_df.empty:
+        print("The dataframe is empty!")
+    else:
+        spatial_df.spatial.plot(map_view,
+                                renderer_type='c', # for class breaks renderer
+                                method='esriClassifyNaturalBreaks', # classification algorithm
+                                class_count=5, # choose the number of classes
+                                col=column, # numeric column to classify
+                                cmap='YlOrRd', # color map to pick colors from for each class
+                                alpha=0.35 # specify opacity
+        )
 
 We want to query the aggregated broadcasted news as an Esri FeatureSet and plot it using a map view.
 Add the following code-block and execute the cell:
 
->>> world_map = gis.map()
->>> protests_featureset = FeatureSet.from_dict(aggregate(client, format=OutFormat.ESRI))
->>> plot_aggregated(world_map, protests_featureset.sdf)
->>> world_map
+.. code-block:: python
+
+    world_map = gis.map()
+    protests_featureset = FeatureSet.from_dict(aggregate(client, format=OutFormat.ESRI))
+    plot_aggregated(world_map, protests_featureset.sdf)
+    world_map
