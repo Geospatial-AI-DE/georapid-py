@@ -20,11 +20,13 @@ Choose your favourite enironment e.g. conda or pip and create a dedicated enviro
 Enter the following at the prompt:
 
 Using conda:
+
 .. code-block:: console
 
    conda create -n geoint
 
 Using pipenv:
+
 .. code-block:: console
 
    python -m venv geoint
@@ -32,16 +34,19 @@ Using pipenv:
 Activate the dedicated environment:
 
 Using conda:
+
 .. code-block:: console
 
    conda activate geoint
 
 Using pipenv on Linux:
+
 .. code-block:: console
 
    source geoint/bin/activate
 
 Using pipenv on Windows:
+
 .. code-block:: console
 
    geoint/Scripts/activate
