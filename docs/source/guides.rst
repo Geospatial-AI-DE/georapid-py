@@ -19,33 +19,33 @@ Step 1: Create a dedicated environment
 Choose your favourite enironment e.g. conda or pip and create a dedicated environment.
 Enter the following at the prompt:
 
-Using conda:
+*Using conda:*
 
 .. code-block:: console
 
    conda create -n geoint
 
-Using pipenv:
-
-.. code-block:: console
-
-   python -m venv geoint
-
-Activate the dedicated environment:
-
-Using conda:
+**Activate the dedicated environment:**
 
 .. code-block:: console
 
    conda activate geoint
 
-Using pipenv on Linux:
+*Using pipenv:*
+
+.. code-block:: console
+
+   python -m venv geoint
+
+**Activate the dedicated environment:**
+
+*Using pipenv on Linux:*
 
 .. code-block:: console
 
    source geoint/bin/activate
 
-Using pipenv on Windows:
+*Using pipenv on Windows:*
 
 .. code-block:: console
 
@@ -76,12 +76,64 @@ After you installed the georapid and arcgis package, you need to verify it.
 
 Step 3: Verify your environment
 """""""""""""""""""""""""""""""
+Navigate to the directory you want to work in.
 Start a new Juypter notebook instance:
 
 .. code-block:: console
 
    jupyter notebook
 
-Step 4:
-"""""""
-Lets see.
+Create new notebook named ``Mapping Protests``.
+Add the following imports and execute the cell:
+
+>>> from arcgis import GIS
+>>> from arcgis.features import FeatureSet
+>>> from georapid.client import GeoRapidClient
+>>> from georapid.factory import EnvironmentClientFactory
+>>> from georapid.formats import OutFormat
+>>> from georapid.protests import aggregate
+
+Create a client instance:
+
+>>> host = "geoprotests.p.rapidapi.com"
+>>> client: GeoRapidClient = EnvironmentClientFactory.create_client_with_host(host)
+
+.. warning::
+    The ``host`` parameter must target the specific host like ``"geoprotests.p.rapidapi.com"``.
+    Furthermore, the factory directly access ``os.environ['x_rapidapi_key']`` and uses the specified API key as a header parameter.
+    Otherwise, :py:func:`georapid.factory.EnvironmentClientFactory.create_client_with_host` will raise a :exc:`ValueError`.
+
+Connect to ArcGIS Online anonymously and display a map view:
+
+>>> gis = GIS()
+>>> world_map = gis.map()
+>>> world_map
+
+Step 4: Map the broadcasted news related to protests of the last 24 hours
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+You define some utility functions plotting the broadcasted news as aggregated polygon features.
+Add the following utility function:
+
+>>> def plot_aggregated(map_view, spatial_df, column='count'):
+>>> """
+>>> Plots the spatial dataframe as classified polygons using the specified map view.
+>>> """
+>>> if spatial_df.empty:
+>>>     print("The dataframe is empty!")
+>>> else:
+>>>     spatial_df.spatial.plot(map_view,
+>>>                             renderer_type='c', # for class breaks renderer
+>>>                             method='esriClassifyNaturalBreaks', # classification algorithm
+>>>                             class_count=5, # choose the number of classes
+>>>                             col=column, # numeric column to classify
+>>>                             cmap='YlOrRd', # color map to pick colors from for each class
+>>>                             alpha=0.35 # specify opacity
+>>>     )
+
+We want to query the aggregated broadcasted news as an Esri FeatureSet and plot it using a map view.
+Add the following code-block and execute the cell:
+
+>>> world_map = gis.map()
+>>> protests_featureset = FeatureSet.from_dict(aggregate(client, format=OutFormat.ESRI))
+>>> plot_aggregated(world_map, protests_featureset.sdf)
+>>> world_map
