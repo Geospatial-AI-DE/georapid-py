@@ -23,7 +23,7 @@ def aggregate(client: GeoRapidClient, date: datetime = None, format = OutFormat.
     """
     Aggregates the broadcasted news related to protests/demonstrations using a spatial grid and returns the features as hexagonal bins.
     The date is optional. When not specified, we return the features of the last 24 hours.
-    The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
+    The underlying hosted feature service saves these features since November 19, 2021 and yesterday should be the latest available date.
     The format can be GeoJSON or Esri JSON.
     """
     endpoint = '{0}/aggregate'.format(client.url)
@@ -39,7 +39,7 @@ def articles(client: GeoRapidClient, date: datetime = None):
     """
     Returns a list of broadcasted articles related to protests/demonstrations.
     The date is optional. When not specified, we return the articles of the last 24 hours.
-    The underlying web service saves the last 90 days and yesterday should be the latest available date.
+    The underlying web service saves these articles since November 19, 2021 and yesterday should be the latest available date.
     """
     endpoint = '{0}/articles'.format(client.url)
     params = {}
@@ -52,7 +52,7 @@ def hotspots(client: GeoRapidClient, date: datetime = None, format = OutFormat.G
     """
     Returns the hotspot locations related to protests/demonstrations.
     The date is optional. When not specified, we return the features of the last 24 hours.
-    The underlying hosted feature service saves the last 90 days and yesterday should be the latest available date.
+    The underlying hosted feature service saves these features since November 19, 2021 and yesterday should be the latest available date.
     The format can be GeoJSON or Esri JSON.
     """
     endpoint = '{0}/hotspots'.format(client.url)
