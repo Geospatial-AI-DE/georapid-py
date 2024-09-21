@@ -13,7 +13,7 @@ The geospatial results support the GeoJSON and Esri Features format out of the b
 Every geospatial result support the GeoJSON and Esri FeatureSet format out of the box. 
 All endpoints support an optional date parameter for filtering the results. 
 For best performance, the serverless cloud-backend calculate the geospatial aggregations of the last 24 hours between midnight and 1 AM UTC. 
-The serverless functions save these geospatial features for the last 90 days and yesterday should be the latest available date. 
+The serverless functions save these geospatial features since November 19, 2021 and yesterday should be the latest available date. 
 Without specifying a date, we have to calculate the geospatial features of the last 24 hours on-the-fly.
 
 .. image:: https://geospatial-ai.de/wp-content/uploads/2022/03/148703806-071bbb42-59c7-4cb8-aa42-cb08814db5df.png
