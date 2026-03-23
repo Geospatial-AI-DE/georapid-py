@@ -6,6 +6,15 @@
 # Geospatial Knowledge supporting Intelligence workflows
 Query broadcasted news worldwide and visualize them using spatial aggregations. This modern Python module represents an idiomatic client accessing the [Geospatial Knowledge APIs](https://geospatial-ai.de/?rara_portfolio_categories=api-services) being hosted on [Rapid API Hub](https://rapidapi.com/hub). 
 
+## Scope and Usage
+This repository provides a Python client library for interacting with the Geospatial Services APIs, which are offered as a hosted service via RapidAPI.
+
+The library is published as **free and open‑source software** under the `Apache‑2.0` licence. It is developed and maintained by an individual without any commercial intent – no fees, no monetisation, and no donations are solicited or accepted.
+
+**For the purposes of the EU Cyber Resilience Act (Regulation (EU) 2024/2847), this software is NOT “made available on the market in the course of a commercial activity” (see Article 3(22) and Recitals 15, 18). Therefore, the obligations that apply to manufacturers (such as CE marking, conformity assessment, and formal vulnerability handling) do not apply to the provision of this library.**
+
+Anyone who integrates this library into their own commercial products or services are responsible for ensuring that their overall system complies with all applicable regulations, including the Cyber Resilience Act where relevant.
+
 ## Why is it important?
 Geospatial Knowledge refers to semantic information about specific locations on the Earth's surface. 
 It includes location-enabled things - not strings - like physical features of the landscape, the location of cities or in general human activities, and their spatial distribution. 
