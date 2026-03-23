@@ -7,7 +7,7 @@
 Query broadcasted news worldwide and visualize them using spatial aggregations. This modern Python module represents an idiomatic client accessing the [Geospatial Knowledge APIs](https://geospatial-ai.de/?rara_portfolio_categories=api-services) being hosted on [Rapid API Hub](https://rapidapi.com/hub). 
 
 ## Scope and Usage
-This repository provides a Python client library for interacting with the Geospatial Services APIs, which are offered as a hosted service via RapidAPI.
+This repository provides a Python client library for interacting with the Geospatial Knowledge APIs, which are offered as a hosted service via RapidAPI.
 
 The library is published as **free and open‑source software** under the `Apache‑2.0` licence. It is developed and maintained by an individual without any commercial intent – no fees, no monetisation, and no donations are solicited or accepted.
 
